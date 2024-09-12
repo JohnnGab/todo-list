@@ -169,3 +169,9 @@ SIMPLE_JWT = {
 
     'BLACKLIST_TOKEN_CHECKS': ['refresh'],
 }
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'auth_api.serializers.CustomUserCreateSerializer',
+    },
+}
