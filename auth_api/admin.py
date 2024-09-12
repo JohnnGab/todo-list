@@ -1,3 +1,10 @@
-from django.contrib import admin
+"""
+Admin configuration for managing models in the Django admin interface.
 
-# Register your models here.
+This module registers models with the Django admin site, allowing 
+administrators to view, add, modify, and delete records via the admin interface.
+"""
+from django.contrib import admin
+from .models import CustomUser
+
+admin.site.register(CustomUser)
