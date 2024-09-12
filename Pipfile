@@ -13,3 +13,5 @@ djangorestframework-simplejwt = "*"
 [dev-packages]
 pylint = "*"
 pylint-django = "*"
+pytest = "*"
+pytest-django = "*"
