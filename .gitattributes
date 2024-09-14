@@ -1,0 +1,11 @@
+# Ensure shell scripts have Unix line endings
+*.sh text eol=lf
+
+# For Docker-related files
+Dockerfile text eol=lf
+*.dockerfile text eol=lf
+
+# For other script files
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
