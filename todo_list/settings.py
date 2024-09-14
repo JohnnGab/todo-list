@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h$vp)&-1u&y7(yb7_zb7%ehpbh=lo0yup1&ls9r*%mgb3a&af+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'todolist_db',
         'USER': 'postgres', 
         'PASSWORD': 'Admin123@',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',    
     }
 }
@@ -157,10 +157,20 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
     'PAGE_SIZE_QUERY_PARAM': 'page_size',
     'MAX_PAGE_SIZE': 100,
+
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',  # Throttle for anonymous users
+        'rest_framework.throttling.UserRateThrottle',  # Throttle for authenticated users
+    ],
+
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',   # Allow 100 requests per day for anonymous users
+        'user': '1000/day',  # Allow 1000 requests per day for authenticated users
+    }
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,

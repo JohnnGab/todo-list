@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: todolist_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Admin123@
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      CREATE_SUPERUSER: "true"
+    restart: always
+
+volumes:
+  postgres_data:
